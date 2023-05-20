@@ -64,15 +64,17 @@ def send_message(links:list,dry_run:bool):
     driver = webdriver.Firefox(firefox_profile=webdriver.FirefoxProfile(ff_profile)) 
     driver.get('https://web.whatsapp.com')
     wait = WebDriverWait(driver, 100)
-
+    count = 0
+    total = len(links)
     for link_tuple in links:
-        print(link_tuple)
+        if name in dump:
+            continue
+        print(f"{count} of {total} {link_tuple}")
         name,link,grade,cat_set = link_tuple
         if name.count(' '):
             name = name.split()[0]
 
-        if name in dump:
-            continue
+        
         
         message = message_builder(name,cat_set,grade)
         driver.get(link)
