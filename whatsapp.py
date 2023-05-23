@@ -25,20 +25,20 @@ def load_dump():
 
 def type_message(driver:any,message):
     action_chain = ActionChains(driver)
+    sleep(1)
     for character in message:
         action_chain.send_keys(character)
     sleep(1)
     action_chain.key_down(Keys.CONTROL).send_keys('V').key_up(Keys.CONTROL).perform()
     sleep(2)
     action_chain.reset_actions()
-    sleep(1.5)
-    action_chain.send_keys(Keys.RETURN).pergform()
-    sleep(5)
+    action_chain.send_keys(Keys.RETURN).perform()
+    sleep(3.5)
 
 def message_builder(name:str,cat_set:set,grade:int) -> str:
     from messages import cp_message,robo_message,dev_message
     from messages import main_body as main_body
-    message = f"Greetings, {name}{main_body}"
+    message = f"Greetings {name},{main_body}"
     if 'Robotics' in cat_set:
         message += f"\n{robo_message}"
 
@@ -47,10 +47,7 @@ def message_builder(name:str,cat_set:set,grade:int) -> str:
         
     if 'Competetive Programming' in cat_set:
         message += f"\n{cp_message}"
-    
-    if grade > 8:
-        message += "\nDiscord link: <server invite>"
-    
+        
     message.format(name=name)
     # print(message)
     return message
@@ -66,15 +63,18 @@ def send_message(links:list,dry_run:bool):
     wait = WebDriverWait(driver, 100)
     count = 0
     total = len(links)
+    import time
     for link_tuple in links:
-        if name in dump:
-            continue
-        print(f"{count} of {total} {link_tuple}")
+        start = time.time()
+        count+=1
         name,link,grade,cat_set = link_tuple
         if name.count(' '):
             name = name.split()[0]
-
-        
+        if link in dump:
+            continue
+        print(f"{count} of {total} {link_tuple}")
+        if name.count(' '):
+            name = name.split()[0]
         
         message = message_builder(name,cat_set,grade)
         driver.get(link)
@@ -83,9 +83,13 @@ def send_message(links:list,dry_run:bool):
         if not dry_run:
             type_message(driver=driver,message=message)
             with open("./dump.txt","a") as dumpfile:
-                dumpfile.write(f"{name}\n")
+                dumpfile.write(f"{link}\n")
                 print(f"Dumped {name} to file")
         else:
             sleep(3)
+        end = time.time()
+        print(f"Elapsed time: {end - start}")
     driver.close()
 
+def announce(message:str, class_cat:set = None, dept_set:set = None):
+    pass
