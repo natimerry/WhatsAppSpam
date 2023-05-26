@@ -16,30 +16,44 @@ test_list = [
     # ("Pritish",whatsapp.link_builder("7596842100"),2,"Competetive Programming, Web Development"),
     # ("Swapnil",whatsapp.link_builder("6291850508"),9,"Web Development"),
     # ("Aniruddha",whatsapp.link_builder("9830335689"),12,"Robotics, Competetive Programming, Web Development"),
-    # ("Anjishnu",whatsapp.link_builder("9674533184"),2,"Competetive Programming, Web Development, Robotics"),
-    # ("Arghya",whatsapp.link_builder("7439395427"),2,"Competetive Programming, Web Development, Robotics"),
-    # ("Divyesha Singh",whatsapp.link_builder("9163966642"),2,"Competetive Programming, Web Development, Robotics"),
-    ("Kakai",whatsapp.link_builder("9007226335"),2,"Competetive Programming, Web Development"),
+    ("Anjishnu",whatsapp.link_builder("9674533184"),8,"Competetive Programming, Web Development, Robotics"),
+    ("Nandy",whatsapp.link_builder("9903737471"),11,"Competetive Programming, Web Development, Robotics")
+    # ("Arghya",whatsapp.link_builder("7439395427"),12,"Competetive Programming, Web Development, Robotics"),
+    ("Divyesha Singh",whatsapp.link_builder("9163966642"),12,"Competetive Programming, Web Development, Robotics"),
+    # ("Kakai",whatsapp.link_builder("9007226335"),2,"Competetive Programming, Web Development"),
             ]
 
-with open('form.csv') as induction_form:
-    reader = csv.DictReader(induction_form)
-    for row in reader:
-        name = row[name_row_name]
-        category = row[department_row_name]
-        if category.count(','):
-            categories_set = set(category.split(", "))
-        else:
-            categories_set = {category}
+# with open('form.csv') as induction_form:
+#     reader = csv.DictReader(induction_form)
+#     for row in reader:
+#         name = row[name_row_name]
+#         category = row[department_row_name]
+#         if category.count(','):
+#             categories_set = set(category.split(", "))
+#         else:
+#             categories_set = {category}
 
-        phone_list.append((
-            name,
-            whatsapp.link_builder(row[phone_number_row_name]),
-            int(row[class_row_name]),
-            categories_set            
-        ))
+#         phone_list.append((
+#             name,
+#             whatsapp.link_builder(row[phone_number_row_name]),
+#             int(row[class_row_name]),
+#             categories_set            
+#         ))
 
-whatsapp.send_message(test_list ,False)
+adultlist = []
+
+# Shall send message to Nandy and Divyesha but not Anjishnu 
+for user in test_list:
+    print(user[2])
+    if user[2]>8:
+        adultlist.append(user)
+
+# print(adultlist)
+
+whatsapp.send_message(adultlist, False)
+
+
+# whatsapp.send_message(test_list ,False)
 #send messages to ppl with dupl names
 
 
