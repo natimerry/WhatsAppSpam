@@ -7,6 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from messages import message_builder
 import os
+import csv
 
 def link_builder(number:str):
     if len(number) > 10:
@@ -94,3 +95,25 @@ def send_message(links:list,dry_run:bool):
 
 def announce(message:str, class_cat:set = None, dept_set:set = None):
     pass
+
+def returnDictData(csvfile:str, name_row_name, class_row_name, phone_number_row_name, department_row_name) -> list:
+
+    with open(csvfile) as induction_form:
+        reader = csv.DictReader(induction_form)
+        phonelist = []
+        for row in reader:
+            name = row[name_row_name]
+            category = row[department_row_name]
+            if category.count(','):
+                categories_set = set(category.split(", "))
+            else:
+                categories_set = {category}
+
+            phonelist.append((
+                name,
+                link_builder(row[phone_number_row_name]),
+                int(row[class_row_name]),
+                categories_set            
+            ))
+
+        return phonelist

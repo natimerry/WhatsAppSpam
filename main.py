@@ -1,8 +1,14 @@
+#############################################
+#  ___ __  __ ____   ___  ____ _____ ____   #
+# |_ _|  \/  |  _ \ / _ \|  _ \_   _/ ___|  #
+#  | || |\/| | |_) | | | | |_) || | \___ \  #
+#  | || |  | |  __/| |_| |  _ < | |  ___) | #
+# |___|_|  |_|_|    \___/|_| \_\|_| |____/  #
+##############################################                                       
+
 import csv
 import whatsapp
 import sys
-
-phone_list = []
 
 # change to corresponding csv headers
 phone_number_row_name = "WhatsApp Mobile Number"
@@ -10,51 +16,55 @@ class_row_name = "Class"
 department_row_name = "Department of Choice (you may choose more than one)"
 name_row_name = "Name"
 
+############################
+#  _____ _____ ____ _____  #
+# |_   _| ____/ ___|_   _| #
+#   | | |  _| \___ \ | |   #
+#   | | | |___ ___) || |   #
+#   |_| |_____|____/ |_|   #
+############################    
 
 test_list = [
-    # ("Maman","9830815568","Robotics, Competetive Programming, Web Development"),
-    # ("Pritish",whatsapp.link_builder("7596842100"),2,"Competetive Programming, Web Development"),
-    # ("Swapnil",whatsapp.link_builder("6291850508"),9,"Web Development"),
-    # ("Aniruddha",whatsapp.link_builder("9830335689"),12,"Robotics, Competetive Programming, Web Development"),
     ("Anjishnu",whatsapp.link_builder("9674533184"),8,"Competetive Programming, Web Development, Robotics"),
-    ("Nandy",whatsapp.link_builder("9903737471"),11,"Competetive Programming, Web Development, Robotics")
-    # ("Arghya",whatsapp.link_builder("7439395427"),12,"Competetive Programming, Web Development, Robotics"),
+    ("Nandy",whatsapp.link_builder("9903737471"),11,"Competetive Programming, Web Development, Robotics"),
     ("Divyesha Singh",whatsapp.link_builder("9163966642"),12,"Competetive Programming, Web Development, Robotics"),
-    # ("Kakai",whatsapp.link_builder("9007226335"),2,"Competetive Programming, Web Development"),
-            ]
+     ]
 
-# with open('form.csv') as induction_form:
-#     reader = csv.DictReader(induction_form)
-#     for row in reader:
-#         name = row[name_row_name]
-#         category = row[department_row_name]
-#         if category.count(','):
-#             categories_set = set(category.split(", "))
-#         else:
-#             categories_set = {category}
+########################
+#   ____ ______     __ #
+#  / ___/ ___\ \   / / #
+# | |   \___ \\ \ / /  #
+# | |___ ___) |\ V /   #
+#  \____|____/  \_/    #
+########################
 
-#         phone_list.append((
-#             name,
-#             whatsapp.link_builder(row[phone_number_row_name]),
-#             int(row[class_row_name]),
-#             categories_set            
-#         ))
+csvlist = whatsapp.returnDictData("form.csv", name_row_name, class_row_name, phone_number_row_name, department_row_name)
 
-adultlist = []
+#####################################
+#  _____ ___ _   _____ _____ ____   #
+# |  ___|_ _| | |_   _| ____|  _ \  #
+# | |_   | || |   | | |  _| | |_) | #
+# |  _|  | || |___| | | |___|  _ <  #
+# |_|   |___|_____|_| |_____|_| \_\ #
+#####################################
 
-# Shall send message to Nandy and Divyesha but not Anjishnu 
-for user in test_list:
+# Set active list here...
+active_list = test_list 
+
+filtered = []
+
+for user in active_list:
     print(user[2])
     if user[2]>8:
-        adultlist.append(user)
+        filtered.append(user)
 
-# print(adultlist)
+#############################
+#  ____  _____ _   _ ____   #
+# / ___|| ____| \ | |  _ \  #
+# \___ \|  _| |  \| | | | | #
+#  ___) | |___| |\  | |_| | #
+# |____/|_____|_| \_|____/  #
+#############################
 
-whatsapp.send_message(adultlist, False)
+whatsapp.send_message(filtered, False)
 
-
-# whatsapp.send_message(test_list ,False)
-#send messages to ppl with dupl names
-
-
-    
