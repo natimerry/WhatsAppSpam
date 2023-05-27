@@ -7,6 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from messages import message_builder
 import os
+import csv
 
 def link_builder(number:str):
     if len(number) > 10:
@@ -36,17 +37,17 @@ def type_message(driver:any,message):
     sleep(3.5)
 
 def message_builder(name:str,cat_set:set,grade:int) -> str:
-    from messages import cp_message,robo_message,dev_message
-    from messages import main_body as main_body
-    message = f"Greetings {name},{main_body}"
-    if 'Robotics' in cat_set:
-        message += f"\n{robo_message}"
+    # from messages import cp_message,robo_message,dev_message
+    from messages import   disc_message as   disc_message
+    message = f"Greetings {name}, \n{ disc_message}"
+    # if 'Robotics' in cat_set:
+    #     message += f"\n{robo_message}"
 
-    if 'Web Development' in cat_set:
-        message+=f"\n{dev_message}"
+    # if 'Web Development' in cat_set:
+    #     message+=f"\n{dev_message}"
         
-    if 'Competetive Programming' in cat_set:
-        message += f"\n{cp_message}"
+    # if 'Competetive Programming' in cat_set:
+    #     message += f"\n{cp_message}"
         
     message.format(name=name)
     # print(message)
@@ -56,7 +57,8 @@ def send_message(links:list,dry_run:bool):
     dump = load_dump()
     #firefox profile goes here
 
-    ff_profile:str = "/home/nolife/.mozilla/firefox/xbx92wvl.default-release"
+    ff_profile:str = "/home/jay/.mozilla/firefox/9r1xcgqx.default-release"
+    # Define ff_profile yourself
 
     driver = webdriver.Firefox(firefox_profile=webdriver.FirefoxProfile(ff_profile)) 
     driver.get('https://web.whatsapp.com')
@@ -93,3 +95,25 @@ def send_message(links:list,dry_run:bool):
 
 def announce(message:str, class_cat:set = None, dept_set:set = None):
     pass
+
+def returnDictData(csvfile:str, name_row_name, class_row_name, phone_number_row_name, department_row_name) -> list:
+
+    with open(csvfile) as induction_form:
+        reader = csv.DictReader(induction_form)
+        phonelist = []
+        for row in reader:
+            name = row[name_row_name]
+            category = row[department_row_name]
+            if category.count(','):
+                categories_set = set(category.split(", "))
+            else:
+                categories_set = {category}
+
+            phonelist.append((
+                name,
+                link_builder(row[phone_number_row_name]),
+                int(row[class_row_name]),
+                categories_set            
+            ))
+
+        return phonelist
