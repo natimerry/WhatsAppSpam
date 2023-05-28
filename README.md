@@ -1,9 +1,9 @@
-# COMMIT: 27.5.2023 #2
+# COMMIT: 27.5.2023 #3
 ### FuncCO4
 
-- Cleared `./dump.txt`
-- Ported csv reading code to `returnDictData()` in `./whatsapp.py` [#100]
-- Restructuring `./main.py`
+- Ignored form.csv
+- Cleared `test_list`
+- Removed duplicate function `message_builder()` from `./whatsapp.py`
 
 #### Issue: 
     - Duplicate function `message_builder()` in `./messages.py` and `./whatsapp.py`

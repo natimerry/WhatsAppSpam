@@ -36,23 +36,6 @@ def type_message(driver:any,message):
     action_chain.send_keys(Keys.RETURN).perform()
     sleep(3.5)
 
-def message_builder(name:str,cat_set:set,grade:int) -> str:
-    # from messages import cp_message,robo_message,dev_message
-    from messages import   disc_message as   disc_message
-    message = f"Greetings {name}, \n{ disc_message}"
-    # if 'Robotics' in cat_set:
-    #     message += f"\n{robo_message}"
-
-    # if 'Web Development' in cat_set:
-    #     message+=f"\n{dev_message}"
-        
-    # if 'Competetive Programming' in cat_set:
-    #     message += f"\n{cp_message}"
-        
-    message.format(name=name)
-    # print(message)
-    return message
-
 def send_message(links:list,dry_run:bool):
     dump = load_dump()
     #firefox profile goes here

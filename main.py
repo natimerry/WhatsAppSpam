@@ -25,9 +25,11 @@ name_row_name = "Name"
 ############################    
 
 test_list = [
-    ("Anjishnu",whatsapp.link_builder("9674533184"),8,"Competetive Programming, Web Development, Robotics"),
+    # Add Tuples here
+    # (Name:str, whatsapp.link_builder(PhoneNo:int), Class:int, Departments:str)
     ("Nandy",whatsapp.link_builder("9903737471"),11,"Competetive Programming, Web Development, Robotics"),
     ("Divyesha Singh",whatsapp.link_builder("9163966642"),12,"Competetive Programming, Web Development, Robotics"),
+    ("Anjishnu",whatsapp.link_builder("9674533184"),8,"Competetive Programming, Web Development, Robotics")
      ]
 
 ########################
@@ -38,7 +40,8 @@ test_list = [
 #  \____|____/  \_/    #
 ########################
 
-csvlist = whatsapp.returnDictData("form.csv", name_row_name, class_row_name, phone_number_row_name, department_row_name)
+filename = "form.csv"
+csvlist = whatsapp.returnDictData(filename, name_row_name, class_row_name, phone_number_row_name, department_row_name)
 
 #####################################
 #  _____ ___ _   _____ _____ ____   #
