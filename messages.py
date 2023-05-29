@@ -11,15 +11,16 @@
 # dev_message = "*Development*\nJoin the Development Group: https://chat.whatsapp.com/DKU5w4VwWVQ2xy3DCnqtQa\n" 
 
 def message_builder(name:str,grade:int,link:str) -> str:
-    message = f"""Attention, tech enthusiasts in classes 9 and above! We're thrilled to invite you to join our exclusive Discord server and engage in fascinating discussions about technology and beyond.
+    message = f"""Attention, tech enthusiasts of classes 9 and above! We're thrilled to invite you to our exclusive Discord server to engage in fascinating discussions about technology and beyond. This  is not compulsory at all and only aims to build peer relations within the Club 
 
-Before you hop on board, we'd like to emphasize the importance of maintaining a respectful and positive environment. Inappropriate behavior will not be tolerated, including spamming or disruptive conduct. Remember, actions have consequences, and we strive to cultivate a space that fosters meaningful interactions.
+Before you hop on board, we'd like to emphasise the importance of maintaining a respectful environment. Inappropriate conduct will not be tolerated (spamming included). Strict actions shall be taken in event of violation of the same. 
 
-While important announcements will be shared both on our Discord server and through WhatsApp, please note that certain updates, session polls, etc. may be shared only on our WhatsApp group. 
+Join us on Discord, learn, share and collaborate to take your passion to new heights! 
+{link}
 
-Join us on Discord and be part of a vibrant community of tech enthusiasts, where you can share your knowledge, learn from others, and engage in stimulating conversations: 
-
-{link}"""
+*Please note*
+While important announcements will be shared both on our Discord server and WhatsApp, a majority of the same shall be shared on our WhatsApp group only.
+"""
 
     message.format(name=name)
     # print(message)
