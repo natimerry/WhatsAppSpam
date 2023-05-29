@@ -11,10 +11,11 @@ import whatsapp
 import sys
 
 # change to corresponding csv headers
-phone_number_row_name = "WhatsApp Mobile Number"
+phone_number_row_name = "Phone No."
 class_row_name = "Class" 
 department_row_name = "Department of Choice (you may choose more than one)"
 name_row_name = "Name"
+links_row_name = "Links"
 
 ############################
 #  _____ _____ ____ _____  #
@@ -26,10 +27,9 @@ name_row_name = "Name"
 
 test_list = [
     # Add Tuples here
-    # (Name:str, whatsapp.link_builder(PhoneNo:int), Class:int, Departments:str)
-    ("Nandy",whatsapp.link_builder("9903737471"),11,"Competetive Programming, Web Development, Robotics"),
-    ("Divyesha Singh",whatsapp.link_builder("9163966642"),12,"Competetive Programming, Web Development, Robotics"),
-    ("Anjishnu",whatsapp.link_builder("9674533184"),8,"Competetive Programming, Web Development, Robotics")
+    # (Name:str, whatsapp.link_builder(PhoneNo:int), Class:int, Link:str)
+    ("Pritish Dutta", whatsapp.link_builder("7596842100"), 10, "https://discord.gg/NCg8BPKArw"),
+    ("Pritish Dutta", whatsapp.link_builder("9903737471"), 12, "https://discord.gg/NCg8BPKArw")
      ]
 
 ########################
@@ -40,8 +40,8 @@ test_list = [
 #  \____|____/  \_/    #
 ########################
 
-filename = "form.csv"
-csvlist = whatsapp.returnDictData(filename, name_row_name, class_row_name, phone_number_row_name, department_row_name)
+filename = "filtered.csv"
+csvlist = whatsapp.returnDictData(filename, name_row_name, class_row_name, phone_number_row_name, links_row_name)
 
 #####################################
 #  _____ ___ _   _____ _____ ____   #
@@ -54,12 +54,6 @@ csvlist = whatsapp.returnDictData(filename, name_row_name, class_row_name, phone
 # Set active list here...
 active_list = test_list 
 
-filtered = []
-
-for user in active_list:
-    print(user[2])
-    if user[2]>8:
-        filtered.append(user)
 
 #############################
 #  ____  _____ _   _ ____   #
@@ -69,5 +63,5 @@ for user in active_list:
 # |____/|_____|_| \_|____/  #
 #############################
 
-whatsapp.send_message(filtered, False)
-
+# print(csvlist)
+whatsapp.send_message(test_list, False)

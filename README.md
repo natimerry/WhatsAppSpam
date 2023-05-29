@@ -1,16 +1,13 @@
-# COMMIT: 27.5.2023 #3
-### FuncCO4
+# COMMIT: 29.5.2023 
+### Discord Branch
 
-- Ignored form.csv
-- Cleared `test_list`
-- Removed duplicate function `message_builder()` from `./whatsapp.py`
-
-#### Issue: 
-    - Duplicate function `message_builder()` in `./messages.py` and `./whatsapp.py`
+- 
 
 #### Run Instructions
 
     - Set `ff_profile` in `/whatsapp.py` [#69]
-    - Set `disc_message` in `./messages.py` and `./whatsapp.py`
-    - Set `active_file` in `./main.py` [#52]
-    - Runfile: `main.py`
+    - Set `message` in `./messages.py` [#14]
+    - Set `active_file` in `./main.py` [#53]
+    - Set `file` (unfiltered dataset) and `tofile` (name of the filtered dataset) in `./filter.py`
+    - Set `filename` (the filtered dataset) in `./main.py`
+    - `python filter.py && python main.py`

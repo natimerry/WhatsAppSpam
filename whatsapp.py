@@ -52,7 +52,7 @@ def send_message(links:list,dry_run:bool):
     for link_tuple in links:
         start = time.time()
         count+=1
-        name,link,grade,cat_set = link_tuple
+        name,link,grade,dclink = link_tuple
         if name.count(' '):
             name = name.split()[0]
         if link in dump:
@@ -61,7 +61,7 @@ def send_message(links:list,dry_run:bool):
         if name.count(' '):
             name = name.split()[0]
         
-        message = message_builder(name,cat_set,grade)
+        message = message_builder(name,grade,dclink)
         driver.get(link)
         textField = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.fd365im1')))
         
@@ -79,24 +79,18 @@ def send_message(links:list,dry_run:bool):
 def announce(message:str, class_cat:set = None, dept_set:set = None):
     pass
 
-def returnDictData(csvfile:str, name_row_name, class_row_name, phone_number_row_name, department_row_name) -> list:
+def returnDictData(csvfile:str, name_row_name, class_row_name, phone_number_row_name, links_row_name) -> list:
 
     with open(csvfile) as induction_form:
         reader = csv.DictReader(induction_form)
         phonelist = []
         for row in reader:
             name = row[name_row_name]
-            category = row[department_row_name]
-            if category.count(','):
-                categories_set = set(category.split(", "))
-            else:
-                categories_set = {category}
-
             phonelist.append((
                 name,
                 link_builder(row[phone_number_row_name]),
-                int(row[class_row_name]),
-                categories_set            
+                int(row[class_row_name]), 
+                row[links_row_name]      
             ))
 
         return phonelist
